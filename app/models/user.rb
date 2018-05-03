@@ -42,15 +42,15 @@ class User < ApplicationRecord
   
   # Activates an account.
   def activate
-    update_columns(activated: FILL_IN, activated_at: FILL_IN)
+    update_attribute(:activated,    true)
+    update_attribute(:activated_at, Time.zone.now)
   end
-
 
   # Sends activation email.
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
-  
+
   # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
@@ -67,7 +67,7 @@ class User < ApplicationRecord
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
-  
+
   private
 
     # Converts email to all lower-case.
@@ -80,5 +80,4 @@ class User < ApplicationRecord
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
-  
 end
