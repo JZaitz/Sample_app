@@ -1,5 +1,4 @@
 # README
-Ruby on Rails Tutorial sample application
 
-This is the sample application for a Twitter Clone
+Sample_App is a Twitter Clone social media site built in Rails with various resources (sessions, mailers, password resets, admin, etc.).
 
